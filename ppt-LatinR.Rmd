@@ -6,31 +6,96 @@ date: "`r Sys.Date()`"
 output: powerpoint_presentation
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+
+```{r, echo=FALSE, include=FALSE, warning=FALSE, comment=FALSE}
+if(!require(pacman))install.packages("pacman")
+pacman::p_load(here)
 ```
 
-## R Markdown
 
-This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+# Call to action de nuestra app 
+- Envío de correos a legisladores en México para crear el Sistema Nacional de Cuidados. 
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
+- Descarga de reportes con los resultados de las usuarias para concientizar sobre nuestra carga de cuidados en la sociedad y compartir en redes. 
 
-## Slide with Bullets
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+# Cómo lo hicimos 
 
-## Slide with R Output
+## 1) Envío de correos 
 
-```{r cars, echo = TRUE, include=TRUE}
-summary(cars)
+- Creamos un módulo en Shiny donde se leen CSVs con correos de legisladores en México (diputadxs y senadorx)
+
+- El módulo utiliza dos funciones desarrolladas por Data Cívica. La primera _r get_representative_emails_ carga los correos de los representantes y filtra por estados con base en la información ingresada por la usuaria. 
+
+- La segunda función _mod_emails_details_server_ prepara el correo para enviar desde la aplicación con base en un template donde se incluyen datos y las exigencias puntuales del movimiento _#YoCuidoMéxico_ y la _#RedNacionalDeCuidados_
+
+# Qué aprendimos 
+
+- Si el envío de correos depende de información ingresada previamente por las usuarias, existen ventajas en crear nuestro propio módulo y funciones para el envío de correos (Template y carga de bases de datos con contactos)
+
+- Si los envíos de correos son sencillos podemos usar paquetes de R que solucionan esto como _mailtoR_. Actualmente estamos usando este paquete para una nueva app donde no tenemos que cargar listas de correos de personas. 
+
+
+# Cómo lo hicimos 
+## 2) Reportes con resultados de las usuarias 
+
+- ¿Qué queríamos? 
+
+- Queríamos que las usuarias pudieran descargar reportes con los resultados principales de su carga de cuidados. Es decir, su distribución de horas, las actividades que pueden o han dejado de hacer por su carga de cuidados y su contrafactual. 
+
+--- 
+
+¿Cuál era el reto principal? 
+
+Queríamos generar infografías que se descargaran en formato PNG para que las usuarias puedan compartir sus carga de cuidados en redes sociales como _Twitter_ o _Instagram_
+
+Por lo tanto... tuvimos que desarrollar nuestra propia forma de generar reportes en Shiny, ya que no podíamos usar reportes de Rmarkdown ya que éste no permite descargar en PNG. Además, necesitábamos más flexibilidad para expresiones reactive de Shiny. 
+
+
+# ¿Cómo se generan los reportes de las usuarias? 
+
+- Creamos un módulo donde se generan los tres reportes de resultados y se unen al final en un zip con los botones de descarga integrados en Shiny. 
+
+- Unimos este módulo con los módulos donde se genera la gráfica de distribución y el contrafactual de la app. 
+
+- Utilizamos _ggplot_, _ggtext_ y _cowplot_ para generar cada uno de los reportes. 
+
+
+# ¿Cómo se generan los reportes de las usuarias? 
+## Pasos: 
+
+1. Con base en el resultado de las usuarias, guardamos las gráficas en un archivo temporal dentro de la app. 
+
+2. Generamos ggplots donde se redactan los textos parametrizados con base en los resultados utilizando ggtext. 
+
+3. Unimos este ggplot con las gráficas de distribución y el contrafactual. Además, generamos otro reporte con imágenes de las actividades que como leer libros, ir al cine o cotizar seguridad social.
+
+4. Las usarias obtienen un archivo zip con los resultados principales en formato PNG que podrán compartir en redes o con familiares y personas cercanas. 
+
+
+# Ejemplo 
+
+```{r , echo=FALSE, out.width = '80%', fig.align='center'}
+knitr::include_graphics(here("input/mi-reporte-1.png"))
 ```
 
-## Slide with Plot
 
-```{r pressure}
-plot(pressure)
+# ¿Cuáles son los retos? 
+
+- Generar estos reportes toma un poco de tiempo por las expresiones reactive y por la generación de imágenes en formato PNG junto con ggplot. 
+
+- Además, es necesario modificar el botón original de desarcarga en Shiny para poder integrar nuestra propia clase en CSS. 
+
+```{r, out.width = '70%'}
+myDownloadButton <- function(outputId, 
+                             label = "DESCARGA Y COMPARTE TUS RESULTADOS"){
+  tags$a(id = outputId, class = "download-results-button shiny-download-link", href = "",
+         target = "_blank", download = NA, NULL, label)
+}
 ```
+
+
+
+- Actualmente no hay un paquete en Shiny o R que permita generar estas infografías sin usar _Rmarkdown_.
+
 
