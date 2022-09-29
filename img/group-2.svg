@@ -1,0 +1,21 @@
+<svg width="993" height="62" viewBox="0 0 993 62" xmlns="http://www.w3.org/2000/svg">
+    <g fill="none" fill-rule="evenodd">
+        <path fill="#FFCF7C" d="M249 40h248v22H249z"/>
+        <path fill="#6794A1" d="M494 40h256v22H494z"/>
+        <g transform="translate(0 -10)">
+            <text font-family=".AppleSystemUIFont" font-size="20" fill="#363F52">
+                            <tspan x="41.849" y="19">¿Cuál es mi huella?</tspan>
+                        </text>
+            <text font-family=".AppleSystemUIFont" font-size="20" fill="#363F52">
+                            <tspan x="301.54" y="21">¿Y tu municipio?</tspan>
+                        </text>
+            <text font-family=".AppleSystemUIFont" font-size="20" fill="#363F52">
+                            <tspan x="815.188" y="19">¡Haz tu parte!</tspan>
+                        </text>
+            <path d="M8 50h242v22H8a8 8 0 0 1-8-8v-6a8 8 0 0 1 8-8z" fill="#F4785C"/>
+            <path d="M985 72H743V50h242a8 8 0 0 1 8 8v6a8 8 0 0 1-8 8z" fill="#363F52"/>
+            <path stroke="#363F52" stroke-width="2" stroke-linecap="square" d="M117.5 33.5v17M374 33.5v17M627 33.5v17M868 33.5v17"/>
+            <rect stroke="#363F52" stroke-width="2" x="1" y="51" width="991" height="20" rx="8"/>
+        </g>
+    </g>
+</svg>
