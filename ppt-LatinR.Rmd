@@ -21,17 +21,23 @@ This is an R Markdown presentation. Markdown is a simple formatting syntax for a
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with R Output
 
-```{r cars, echo = TRUE, include=TRUE}
-summary(cars)
+## ¿Cuál era el reto? 
+:::::: {.columns}
+
+::: {.column}
+```{r}
+knitr::include_graphics(here("input/ss-huella.png"))
 ```
+:::
 
-## Slide with Plot
-
-```{r pressure}
-plot(pressure)
+:::{.column}
+```{r}
+knitr::include_graphics(here("input/ss-huella_notresp.png"))
 ```
+:::
+
+::::::
 
 
 ## ¿Cuál era el reto? 
@@ -53,7 +59,7 @@ knitr::include_graphics(here("input/ss-huella_mobile.png"))
 
 
 
-## ¿Cuál era el reto? 
+## Una app responsive 
 
 -Existe una infinidad de tamaños de resoluciones. 
 
