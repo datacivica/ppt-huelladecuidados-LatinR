@@ -145,7 +145,7 @@ app_server <- function(input,
 
 [![Distribución](img/preguntas/distri.png)](https://huelladecuidados.datacivica.org/#mi-huella-1)
 
-# ¿Cómo *sensibilizar*? Posicionamiento del usuario con respecto al resto
+# ¿Cómo **sensibilizar**? Posicionamiento del usuario con respecto al resto
 :::::: {.columns}
 
 ::: {.column}
