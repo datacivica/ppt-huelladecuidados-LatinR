@@ -8,9 +8,10 @@ output:
 subtitle: "Shiny como herramienta para la divulgación y el cambio social"
 ---
 
-```{r setup, include=FALSE, warning=FALSE}
+
+```{r, echo=FALSE, include=FALSE, warning=FALSE, comment=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-pacman::p_load(here, knitr, webshot)
+pacman::p_load(here, knitr)
 ```
 
 #
@@ -137,8 +138,7 @@ app_server <- function(input,
 
 ```
 :::
-
-::::::
+:::::
 
 # ¿Cómo **sensibilizar**? Posicionamiento del usuario con respecto al resto
 
@@ -287,11 +287,122 @@ myDownloadButton <- function(outputId,
 
 
 
-## Jorge
-Slides Giorgi
+# ¿Cuál era el reto? 
+:::::: {.columns}
 
-## Monse
-Slides Monse
+::: {.column}
+```{r}
+knitr::include_graphics(here("img/ss-huella.png"))
+```
+:::
+
+:::{.column}
+```{r}
+knitr::include_graphics(here("img/ss-huella_notresp.png"))
+```
+:::
+
+::::::
+
+
+# ¿Cuál era el reto? 
+:::::: {.columns}
+
+::: {.column}
+```{r}
+knitr::include_graphics(here("img/ss-huella.png"))
+```
+:::
+
+:::{.column}
+```{r}
+knitr::include_graphics(here("img/ss-huella_mobile.png"))
+```
+:::
+
+::::::
+
+
+# Una app responsive 
+
+-Existe una infinidad de tamaños de resoluciones. 
+
+-Convencionalmente se dividen en 5 grupos, marcadas por breakpoints. 
+
+-Las clases de utilidad de bootstrap ayudan a diseñar rápidamente elementos sin usar código CSS.
+
+-Existen clases de utilidad responsive que combinan breakpoints y propiedades de diseño. 
+
+
+
+# Creando un layout responsive con clases de bootstrap
+
+```{html, echo = T, eval = F, out.width = '60%'}
+
+<div class="graph-container col-sm-12 col-md-9 mb-lg-3">...</div>
+
+  <div class= "text-container col-sm-12 col-md-3">...</div>
+
+<div class= "progress-bar-stages d-none d-lg-flex">...</div>
+ 
+```
+
+
+# ¿Cuál era la alternativa?
+
+1.Establecer en el archivo .html y .css el código y las clases para un layout base (convencionalmente se usa mobile)
+
+2.Generar media queries ajustando las propiedades de los elementos para todas las resoluciones diferentes a la base.
+
+
+
+# Solucion con media queries
+
+```{css, echo = T, eval = F}
+
+@media (min-width: 768 px) {
+
+.graph-container{
+            flex: 0 0 auto;
+            width: 66.66667 %;
+            }
+
+.text-container{
+            flex: 0 0 auto;
+            width:25%;
+            }
+}
+
+```
+
+
+# Solucion con media queries
+
+```{css, echo = T, eval = F}
+.progress-bar-stages{
+          visibility:hidden;
+}
+
+@media (min-width: 992 px) {
+
+.graph-container{ 
+          margin-bottom: 1rem 
+          }
+
+.progress-bar-stages{
+          visibility:visible
+            }
+}
+
+```
+
+# ¿Qué aprendimos? 
+
+-Grid system, clases de utilidad y clases responsive agilizan el desarrollo web. 
+
+-Limitación: Hay algunas resoluciones que no pueden ser atacadas con estas clases.
+
+-Tip: Shiny incluye Bootstrap 3 por default. Es necesario especificar qué versión queremos usar. (Se puede definir con la librería bslib) 
 
 # ¿Cómo hacer un ggplot responsive?
 :::::: {.columns}
@@ -389,6 +500,7 @@ plotHeight <- function() {
 :::
 
 ::::::
+
 # Limitaciones de Shiny como herramienta para la divulgación
 
 - **Lenguaje de alto nivel**: más recursos 
@@ -396,3 +508,12 @@ plotHeight <- function() {
 - **Comunicación** con el equipo de programación (más recursos)
 
 # Gracias
+
+
+
+
+
+
+
+
+
