@@ -76,7 +76,7 @@ Por lo tanto... tuvimos que desarrollar nuestra propia forma de generar reportes
 # Ejemplo 
 
 ```{r , echo=FALSE, out.width = '80%', fig.align='center'}
-knitr::include_graphics(here("input/mi-reporte-1.png"))
+knitr::include_graphics(here("img/mi-reporte-1.png"))
 ```
 
 
@@ -86,11 +86,17 @@ knitr::include_graphics(here("input/mi-reporte-1.png"))
 
 - Además, es necesario modificar el botón original de desarcarga en Shiny para poder integrar nuestra propia clase en CSS. 
 
+# ¿Cuáles son los retos? 
+
 ```{r, out.width = '70%'}
 myDownloadButton <- function(outputId, 
                              label = "DESCARGA Y COMPARTE TUS RESULTADOS"){
-  tags$a(id = outputId, class = "download-results-button shiny-download-link", href = "",
-         target = "_blank", download = NA, NULL, label)
+  tags$a(id = outputId, 
+         class = "download-results-button shiny-download-link", 
+         href = "",
+         target = "_blank", 
+         download = NA, NULL, 
+         label)
 }
 ```
 
